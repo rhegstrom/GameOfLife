@@ -72,7 +72,7 @@ def printBoard():
 
 
 # Populate initial board with random values and print board
-board = np.random.choice([0, 1], p=[0.9, 0.1], size=(ROWS, COLUMNS))            
+board = np.random.choice([0, 1], p=[0.6, 0.4], size=(ROWS, COLUMNS))            
 printBoard()
 time.sleep(1)
 
