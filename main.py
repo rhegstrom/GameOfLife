@@ -22,9 +22,9 @@ Report on:
     1. what was the fewest number of steps (from a random beginning) until all cells are 'dead,'
     2. what was the smallest number of steps until a stable configuration was found.  Put these answers in comments in the code.  
     
-    I ran the program 20 times:
-       The smallest number of steps to reach a stable configuration was 34
-       The smallest number of steps for all cells to die was 88(HAPPENED ONLY ONCE)
+    I ran the program 30+ times:
+       The smallest number of steps to reach a stable configuration was 29
+       The smallest number of steps for all cells to die was 49(ALL CELLS ONLY DIED TWICE)
     
  
 """
