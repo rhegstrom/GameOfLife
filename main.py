@@ -24,7 +24,7 @@ Report on:
     
     I ran the program 20 times:
        The smallest number of steps to reach a stable configuration was 34
-       The smallest number of steps for all cells to die was 88
+       The smallest number of steps for all cells to die was 88(HAPPENED ONLY ONCE)
     
  
 """
