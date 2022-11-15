@@ -4,6 +4,10 @@ Created on Sun Oct 16 07:40:09 2022
 
 @author: Roger Hegstrom (rhegstrom@avc.edu)
 
+NOTE:  
+     - I WOULD RUN THIS ON THE COMMAND LINE AND NOT IN SPYDER ex: python main.py
+     
+      
 Conway's Game of Life
 ---------------------
     RULES:
@@ -11,14 +15,30 @@ Conway's Game of Life
             
         If cell is ALIVE and has 2 or 3 ALIVE neighbors --> stays ALIVE
            otherwise --> cell DIES
+
+    Display the 20x20 grid at each step, observe how the game progresses.        
+           
+Report on:
+    1. what was the fewest number of steps (from a random beginning) until all cells are 'dead,'
+    2. what was the smallest number of steps until a stable configuration was found.  Put these answers in comments in the code.  
+    
+    I ran the program 20 times:
+       The smallest number of steps to reach a stable configuration was 34
+       The smallest number of steps for all cells to die was 88
+    
+ 
 """
 import numpy as np
 import os
 import time
 
 
-ROWS    = os.get_terminal_size().lines - 1
-COLUMNS = os.get_terminal_size().columns
+#ROWS    = os.get_terminal_size().lines - 1
+#COLUMNS = os.get_terminal_size().columns
+
+ROWS    = 20
+COLUMNS = 20
+
 ALIVE   = 1
 DEAD    = 0
 
@@ -72,10 +92,14 @@ def printBoard():
 
 
 # Populate initial board with random values and print board
-board = np.random.choice([0, 1], p=[0.6, 0.4], size=(ROWS, COLUMNS))            
+board = np.random.choice([0, 1], p=[0.6, 0.4], size=(ROWS, COLUMNS))    
+
+previousBoard = np.zeros((20,20))
+        
 printBoard()
 time.sleep(1)
 
+steps = 0
 # Main Program Loop
 while True:
     tempBoard = np.zeros((ROWS, COLUMNS), dtype=int) # next iteration board
@@ -87,7 +111,16 @@ while True:
                 tempBoard[row, col] = ALIVE
             else:
                 tempBoard[row, col] = DEAD            
-   
+                
+    steps = steps + 1
+    if ( (previousBoard == board).all() or (previousBoard == tempBoard).all()):
+        print(f"(steps={steps}) A stable state has been achieved...")
+        exit(0)
+                
+    previousBoard = board.copy()
     board = tempBoard.copy()
     printBoard()
-    time.sleep(0.1)
+    
+    if (np.sum(board) == 0 ):
+        print(f"(steps={steps}) A stable state has been reached(all cells died)...")
+#    time.sleep(0.1)
